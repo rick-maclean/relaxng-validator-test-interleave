@@ -1,0 +1,14 @@
+# ndebeiss/jsrelaxngvalidator does not properly handle more than two <ref> items inside <interleave> RelaxNG
+
+default namespace = ""
+namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
+
+start = m.rootNode
+div {
+    m.rootNode.attlist =
+        attribute type { "stringField" }
+        & attribute typeVersion { "1.2345" }
+        & attribute revision { xsd:integer }
+    m.rootNode = element rootNode { m.rootNode.attlist }
+}
+# Names Index
