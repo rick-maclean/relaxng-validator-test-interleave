@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ndebeiss/jsrelaxngvalidator does not properly handle more than two <ref> items inside <interleave> RelaxNG
+-->
+
+<grammar ns="" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+         xmlns="http://relaxng.org/ns/structure/1.0"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <start>
+    <ref name="m.rootNode"/>
+  </start>
+
+  <div>
+    <define name="m.rootNode.attlist">
+      <interleave>
+        <attribute name="type"><value>stringField</value></attribute>
+        <attribute name="typeVersion"><value>1.2345</value></attribute>
+        <attribute name="revision"><data type="integer"/></attribute>
+      </interleave>
+    </define>
+    <define name="m.rootNode">
+      <element name="rootNode">
+        <interleave>
+          <ref name="m.rootNode.attlist"/>
+        </interleave>
+      </element>
+    </define>
+  </div>
+
+
+</grammar>
+<!-- Names Index -->
